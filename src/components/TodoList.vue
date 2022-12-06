@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const todos = []
+import { inject } from "vue";
 
+const todos = inject("todos");
+
+const _addTodo = inject("addTodo");
 const addTodo = (title: string) => {
-  console.log(title)
-}
-
+  _addTodo(title);
+};
 </script>
 
 <template>
@@ -13,11 +15,12 @@ const addTodo = (title: string) => {
       <li
         :style="{ backgroundColor: 'aliceblue', marginBottom: '10px' }"
         v-for="todo in todos"
-      >{{ todo.title }}</li>
+      >
+        {{ todo.title }}
+      </li>
     </ul>
     <button @click="addTodo('add!')">Add</button>
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
